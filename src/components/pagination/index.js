@@ -1,32 +1,54 @@
 import React from "react"
+import propTypes from "prop-types"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
-import * as S from "../styles.css"
+import getThemeColor from "../../utils/getThemeColor"
+import * as S from "./styled"
 
-const Pagination = ({ numPages, currentPage, contextPage }) => {
-  if (numPages <= 1) {
-    return null
-  }
+const Pagination = ({
+  isFirst,
+  isLast,
+  currentPage,
+  numPages,
+  prevPage,
+  nextPage,
+}) => (
+  <S.PaginationWrapper>
+    {!isFirst && (
+      <AniLink
+        to={prevPage}
+        cover
+        direction="left"
+        bg={getThemeColor()}
+        duration={0.6}
+      >
+        ← página anterior
+      </AniLink>
+    )}
+    <p>
+      {currentPage} de {numPages}
+    </p>
+    {!isLast && (
+      <AniLink
+        to={nextPage}
+        cover
+        direction="right"
+        bg={getThemeColor()}
+        duration={0.6}
+      >
+        proxima página →
+      </AniLink>
+    )}
+  </S.PaginationWrapper>
+)
 
-  return (
-    <S.Pagination>
-      {Array.from({ length: numPages }).map((item, i) => {
-        const index = i + 1
-
-        const baseLink = `/blog/${contextPage ? `${contextPage}/` : ""}`
-        const link = index === 1 ? baseLink : `${baseLink}page/${index}`
-
-        return (
-          <S.PaginationItem current={currentPage === index} key={link}>
-            {currentPage === index ? (
-              <span>{index}</span>
-            ) : (
-              <a href={link}>{index}</a>
-            )}
-          </S.PaginationItem>
-        )
-      })}
-    </S.Pagination>
-  )
+Pagination.propTypes = {
+  isFirst: propTypes.bool.isRequired,
+  isLast: propTypes.bool.isRequired,
+  currentPage: propTypes.number.isRequired,
+  numPages: propTypes.number.isRequired,
+  prevPage: propTypes.string,
+  nextPage: propTypes.string,
 }
 
 export default Pagination
