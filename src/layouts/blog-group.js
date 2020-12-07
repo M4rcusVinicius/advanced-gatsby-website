@@ -12,19 +12,19 @@ import renderList from "../components/renderList"
 
 const BlogAuhor = ({ data, pageContext }) => {
   const { allMarkdownRemark } = data
-  const { currentPage, numPages, subject, allSubjects } = pageContext
+  const { currentPage, numPages, group, allGroups } = pageContext
 
   return (
     <Layout>
-      <Seo title={subject} />
+      <Seo title={group} />
 
       <Container>
         <Row>
           <Cell xs={12}>
-            <S.HeaderSectionTitle>Subjects:</S.HeaderSectionTitle>
+            <S.HeaderSectionTitle>Groups:</S.HeaderSectionTitle>
             <S.HeaderSectionList>
-              {allSubjects.map((cat) => (
-                <S.HeaderSectionLink to={`/blog/subject/${kebabCase(cat)}`}>
+              {allGroups.map((cat) => (
+                <S.HeaderSectionLink to={`/blog/group/${kebabCase(cat)}`}>
                   {cat}
                 </S.HeaderSectionLink>
               ))}
@@ -37,7 +37,7 @@ const BlogAuhor = ({ data, pageContext }) => {
         <Pagination
           currentPage={currentPage}
           numPages={numPages}
-          contextPage={`subject/${kebabCase(subject)}`}
+          contextPage={`group/${kebabCase(group)}`}
         />
       </Container>
     </Layout>
@@ -47,10 +47,10 @@ const BlogAuhor = ({ data, pageContext }) => {
 export default BlogAuhor
 
 export const query = graphql`
-  query blogPostsListBySubject($subject: String, $skip: Int!, $limit: Int!) {
+  query blogPostsListByGroup($group: String, $skip: Int!, $limit: Int!) {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { subject: { in: [$subject] } } }
+      filter: { frontmatter: { group: { in: [$group] } } }
       limit: $limit
       skip: $skip
     ) {
@@ -63,7 +63,7 @@ export const query = graphql`
             title
             date
             author
-            subject
+            group
             category
             image {
               childImageSharp {

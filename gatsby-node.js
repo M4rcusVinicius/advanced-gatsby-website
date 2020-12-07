@@ -9,7 +9,7 @@ exports.createPages = ({ graphql, actions }) => {
   const blogListLayout = path.resolve(`./src/layouts/blog-list.js`)
   const blogCategoryLayout = path.resolve(`./src/layouts/blog-category.js`)
   const blogAuthorLayout = path.resolve(`./src/layouts/blog-author.js`)
-  const blogSubjectLayout = path.resolve(`./src/layouts/blog-subject.js`)
+  const blogGroupLayout = path.resolve(`./src/layouts/blog-group.js`)
 
   return graphql(`
     query blogPosts {
@@ -25,7 +25,7 @@ exports.createPages = ({ graphql, actions }) => {
               author
               category
               featured
-              subject
+              group
               image {
                 childImageSharp {
                   fluid {
@@ -52,7 +52,7 @@ exports.createPages = ({ graphql, actions }) => {
     })
     const numPages = Math.ceil(postsWithoutFeatured.length / postsPerPage)
     const categories = []
-    const subjects = []
+    const groups = []
     const authors = []
 
     // Creating blog list with pagination
@@ -73,7 +73,7 @@ exports.createPages = ({ graphql, actions }) => {
     posts.forEach((post, index, arr) => {
       post.node.frontmatter.category.forEach(cat => categories.push(cat))
       authors.push(post.node.frontmatter.author)
-      subjects.push(post.node.frontmatter.subject)
+      groups.push(post.node.frontmatter.group)
 
       const prev = arr[index - 1]
       const next = arr[index + 1]
@@ -145,29 +145,29 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 
-    // Creating subject page
-    const countSubject = subjects.reduce((prev, curr) => {
+    // Creating group page
+    const countGroup = groups.reduce((prev, curr) => {
       prev[curr] = (prev[curr] || 0) + 1
       return prev
     }, {})
-    const allSubjects = Object.keys(countSubject)
+    const allGroups = Object.keys(countGroup)
 
-    allSubjects.forEach((aut, i) => {
-      const link = `/blog/subject/${kebabCase(aut)}`
+    allGroups.forEach((aut, i) => {
+      const link = `/blog/group/${kebabCase(aut)}`
 
       Array.from({
-        length: Math.ceil(countSubject[aut] / postsPerPage),
+        length: Math.ceil(countGroup[aut] / postsPerPage),
       }).forEach((_, i) => {
         createPage({
           path: i === 0 ? link : `${link}/page/${i + 1}`,
-          component: blogSubjectLayout,
+          component: blogGroupLayout,
           context: {
-            allSubjects: allSubjects,
-            subject: aut,
+            allGroups: allGroups,
+            group: aut,
             limit: postsPerPage,
             skip: i * postsPerPage,
             currentPage: i + 1,
-            numPages: Math.ceil(countSubject[aut] / postsPerPage),
+            numPages: Math.ceil(countGroup[aut] / postsPerPage),
           },
         })
       })
