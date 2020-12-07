@@ -3,9 +3,9 @@ import kebabCase from "lodash.kebabcase"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { Row, Cell } from "griding"
 
-import * as S from "../components/styles.css"
-import ConcatWords from "../utils/ConcatWords"
-import formatDate from "../utils/formatDate"
+import * as S from "../styles.css"
+import ConcatWords from "../../utils/ConcatWords"
+import formatDate from "../../utils/formatDate"
 
 const BlogFeatured = () => {
   const { markdownRemark } = useStaticQuery(query)

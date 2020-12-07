@@ -1,6 +1,6 @@
 import React from "react"
 
-import * as S from "../components/styles.css"
+import * as S from "../styles.css"
 
 const Pagination = ({ numPages, currentPage, contextPage }) => {
   if (numPages <= 1) {

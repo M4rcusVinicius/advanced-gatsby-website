@@ -13,7 +13,7 @@ import Typography from "typography"
 import moragaTheme from "typography-theme-moraga"
 import { Provider as GridProvider } from "griding"
 
-import * as S from "../components/styles.css"
+import * as S from "../styles.css"
 
 const typography = new Typography(moragaTheme)
 typography.injectStyles()

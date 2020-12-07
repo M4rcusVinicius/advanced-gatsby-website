@@ -3,9 +3,9 @@ import kebabCase from "lodash.kebabcase"
 import { Link } from "gatsby"
 import { Row, Cell } from "griding"
 
-import * as S from "../components/styles.css"
-import ConcatWords from "../utils/ConcatWords"
-import formatDate from "../utils/formatDate"
+import * as S from "../styles.css"
+import ConcatWords from "../../utils/ConcatWords"
+import formatDate from "../../utils/formatDate"
 
 const renderList = ({ node }) => {
   const imageSource = node.frontmatter.image.childImageSharp.fluid.src
