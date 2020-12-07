@@ -9,6 +9,7 @@ exports.createPages = ({ graphql, actions }) => {
   const blogListLayout = path.resolve(`./src/layouts/blog-list.js`)
   const blogCategoryLayout = path.resolve(`./src/layouts/blog-category.js`)
   const blogAuthorLayout = path.resolve(`./src/layouts/blog-author.js`)
+  const blogSubjectLayout = path.resolve(`./src/layouts/blog-subject.js`)
 
   return graphql(`
     query blogPosts {
@@ -24,6 +25,7 @@ exports.createPages = ({ graphql, actions }) => {
               author
               category
               featured
+              subject
               image {
                 childImageSharp {
                   fluid {
@@ -50,6 +52,7 @@ exports.createPages = ({ graphql, actions }) => {
     })
     const numPages = Math.ceil(postsWithoutFeatured.length / postsPerPage)
     const categories = []
+    const subjects = []
     const authors = []
 
     // Creating blog list with pagination
@@ -70,6 +73,7 @@ exports.createPages = ({ graphql, actions }) => {
     posts.forEach((post, index, arr) => {
       post.node.frontmatter.category.forEach(cat => categories.push(cat))
       authors.push(post.node.frontmatter.author)
+      subjects.push(post.node.frontmatter.subject)
 
       const prev = arr[index - 1]
       const next = arr[index + 1]
@@ -136,6 +140,34 @@ exports.createPages = ({ graphql, actions }) => {
             skip: i * postsPerPage,
             currentPage: i + 1,
             numPages: Math.ceil(countAuthor[aut] / postsPerPage),
+          },
+        })
+      })
+    })
+
+    // Creating subject page
+    const countSubject = subjects.reduce((prev, curr) => {
+      prev[curr] = (prev[curr] || 0) + 1
+      return prev
+    }, {})
+    const allSubjects = Object.keys(countSubject)
+
+    allSubjects.forEach((aut, i) => {
+      const link = `/blog/subject/${kebabCase(aut)}`
+
+      Array.from({
+        length: Math.ceil(countSubject[aut] / postsPerPage),
+      }).forEach((_, i) => {
+        createPage({
+          path: i === 0 ? link : `${link}/page/${i + 1}`,
+          component: blogSubjectLayout,
+          context: {
+            allSubjects: allSubjects,
+            subject: aut,
+            limit: postsPerPage,
+            skip: i * postsPerPage,
+            currentPage: i + 1,
+            numPages: Math.ceil(countSubject[aut] / postsPerPage),
           },
         })
       })
