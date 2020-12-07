@@ -175,25 +175,23 @@ exports.createPages = ({ graphql, actions }) => {
   })
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    const [month, day, year] = new Date(node.frontmatter.date)
-      .toLocaleDateString("en-EN", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      })
-      .split("/")
-    const slug = value.replace("/blog/", "").replace(/\/$/, "")
-    const url = `/blog/${year}/${month}/${day}${slug}`
-
-    createNodeField({
-      name: `slug`,
+  // Ensures we are processing only markdown files
+  if (node.internal.type === "MarkdownRemark") {
+    // Use `createFilePath` to turn markdown files in our `data/faqs` directory into `/faqs/slug`
+    const slug = createFilePath({
       node,
-      value: url,
+      getNode,
+      basePath: "pages",
+    })
+
+    // Creates new query'able field with name of 'slug'
+    createNodeField({
+      node,
+      name: "slug",
+      value: `/${slug}`,
     })
   }
 }
+
