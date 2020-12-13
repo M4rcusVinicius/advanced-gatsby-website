@@ -1,62 +1,47 @@
 import styled from "styled-components"
 import media from "styled-media-query"
+import Img from "gatsby-image"
+
+export const PostBanner = styled(Img)`
+  border-radius: 25px 25px 0 0;
+`
 
 export const PostHeader = styled.header`
   color: var(--postColor);
-  margin: auto;
-  max-width: 70rem;
-  padding: 5rem 5rem 0;
-
-  ${media.lessThan("large")`
-    padding: 3rem 0 0;
-    max-width: 100%;
-  `}
+  margin-top: 3.2rem;
 `
 
 export const PostTitle = styled.h1`
-  font-size: 4rem;
-  font-weight: 700;
-  padding: 0 1.4rem;
+  font-size: 3rem;
+  font-weight: 900;
   margin: 1rem auto;
+  color: var(--title)
+`
 
-  ${media.lessThan("large")`
-    font-size: 2.8rem;
-    line-height: 1.1;
-    padding: 0 1rem;
-  `}
+export const Container = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 4rem;
 `
 
 export const PostDescription = styled.h2`
   font-size: 2rem;
   font-weight: 200;
-  padding: 0 1.4rem;
 
-  ${media.lessThan("large")`
-    font-size: 1.6rem;
-    line-height: 1.3;
-    padding: 0 1rem;
-  `}
 `
 
 export const PostDate = styled.p`
-  font-size: 1.1rem;
-  font-weight: 100;
-  padding: 0 1.4rem;
-
-  ${media.lessThan("large")`
-    padding: 0 1rem;
-  `}
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--lightText)
 `
 
 export const MainContent = styled.section`
-  margin: auto;
-  max-width: 70rem;
-  padding: 2rem 5rem;
-
-  ${media.lessThan("large")`
-    padding: 2rem 0;
-    max-width: 100%;
-  `}
+  background-color: var(--background);
+  max-width: 50rem;
+  border-radius: 25px;
+  box-shadow: var(--borders) 1px 1px 5px 0px;
 
   p,
   h1,
@@ -70,10 +55,10 @@ export const MainContent = styled.section`
   .button-post {
     color: var(--postColor);
     font-size: 1.25rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.7;
     letter-spacing: 0.069rem;
-    padding: 0 1.4rem;
+    padding: 0 2rem;
 
     ${media.lessThan("large")`
       padding: 0 1rem;
@@ -90,6 +75,7 @@ export const MainContent = styled.section`
   h3,
   h4,
   h5 {
+    color: var(--title);
     margin: 2.4rem auto 1rem;
   }
 
@@ -153,7 +139,6 @@ export const MainContent = styled.section`
   h4,
   h5 {
     font-weight: 800;
-    letter-spacing: 0.069rem;
     line-height: 1.4;
   }
 

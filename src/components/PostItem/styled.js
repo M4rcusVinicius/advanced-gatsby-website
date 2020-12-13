@@ -1,14 +1,14 @@
 import styled from "styled-components"
 import media from "styled-media-query"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
+import { Link } from 'gatsby'
+import Img from "gatsby-image"
 
-export const PostItemLink = styled(AniLink)`
+export const PostItemLink = styled(Link)`
   color: var(--texts);
   display: flex;
   text-decoration: none;
 
   body#grid & {
-    background-color: var(--background);
   }
 
   &:hover {
@@ -18,80 +18,81 @@ export const PostItemLink = styled(AniLink)`
 
 export const PostItemWrapper = styled.section`
   align-items: center;
-  border-bottom: 1px solid var(--borders);
+  border-radius: 15px;
   display: flex;
-  padding: 2rem 3rem;
+  margin: 0.8em 0;
   width: 100%;
+  box-shadow: var(--borders) 1px 1px 5px 0px;
+  background-color: var(--background);
 
   body#grid & {
-    border: none;
-    padding: 2rem 1rem;
+    margin: 0;
     flex-direction: column;
-    justify-content: center;
+    justify-content: top;
+    max-width: 400px;
   }
-
-  ${media.lessThan("large")`
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 2rem 1rem;
-  `}
 `
 
-export const PostItemTag = styled.div`
-  align-items: center;
-  background: ${props =>
-    props.background ? props.background : "var(--highlight)"};
-  border-radius: 50%;
-  color: #fff;
-  display: flex;
-  font-size: 1.3rem;
-  font-weight: 700;
-  justify-content: center;
-  min-height: 90px;
-  min-width: 90px;
-  text-transform: uppercase;
-
-  ${media.lessThan("large")`
-    border-radius: 0;
-    font-size: 1rem;
-    min-height: auto;
-    min-width: auto;
-    padding: .2rem .5rem;
-    margin-bottom: .7rem;
-  `}
+export const PostItemBanner = styled(Img)`
+  border-radius: 25px 0 0 25px;
+  min-height: 12rem;
+  min-width: 12rem;
 
   body#grid & {
-    margin-bottom: 1.5rem;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+  }
+`
+
+export const PostItemBannerDiv = styled.div`
+
+  body#grid & {
+    height: 15rem;
+    width: 100%;
+    padding: 0.4rem;
   }
 `
 
 export const PostItemInfo = styled.div`
+  padding: 1.5rem 2.4rem 1.5rem 1.5rem; 
   display: flex;
   flex-direction: column;
   margin-left: 1.5rem;
 
-  ${media.lessThan("large")`
+  body#grid & {
     margin: 0;
-  `}
+    padding: 2rem; 
+  }
 `
 
 export const PostItemDate = styled.time`
   font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--lightText);
+  margin: 0 0 1rem;
 `
 
 export const PostItemTitle = styled.h1`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  margin: 0.2rem 0 0.5rem;
+  color: var(--title);
+  margin: 0 0 0.6rem;
 
   body#grid & {
     line-height: 1.1;
+    font-size: 1.3rem;
     margin: 0.8rem 0;
   }
 `
 
 export const PostItemDescription = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 300;
   line-height: 1.2;
+  overflow: hidden; // Removendo barra de rolagem
+  text-overflow: ellipsis; // Adicionando "..." ao final
+  display: -webkit-box;
+  -webkit-line-clamp: 4; // Quantidade de linhas
+  -webkit-box-orient: vertical; 
 `

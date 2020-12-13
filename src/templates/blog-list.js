@@ -23,22 +23,27 @@ const BlogList = props => {
       <S.ListWrapper>
         {postList.map(
           ({
+            
             node: {
-              frontmatter: { background, category, date, description, title },
+              frontmatter: { category, date, description, title, featuredImage },
               timeToRead,
               fields: { slug },
             },
-          }) => (
-            <PostItem
-              slug={slug}
-              background={background}
-              category={category}
-              date={date}
-              timeToRead={timeToRead}
-              title={title}
-              description={description}
-            />
-          )
+          }) => {
+            let featuredImgFluid = featuredImage.childImageSharp.fluid
+
+            return(
+              <PostItem
+                featuredImgFluid={featuredImgFluid}
+                slug={slug}
+                category={category}
+                date={date}
+                timeToRead={timeToRead}
+                title={title}
+                description={description}
+              />
+            )
+          }
         )}
       </S.ListWrapper>
 
@@ -67,7 +72,13 @@ export const query = graphql`
             slug
           }
           frontmatter {
-            background
+            featuredImage {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             category
             date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
             description

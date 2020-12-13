@@ -4,8 +4,20 @@ const links = [
     url: "/",
   },
   {
-    label: "Sobre Mim",
-    url: "/about/",
+    label: "Trabalhos",
+    url: "/trabalho/",
+  },
+  {
+    label: "Redação",
+    url: "/redacao/",
+  },
+  {
+    label: "Resumo",
+    url: "/resumo/",
+  },
+  {
+    label: "Sobre",
+    url: "/sobre/",
   },
 ]
 

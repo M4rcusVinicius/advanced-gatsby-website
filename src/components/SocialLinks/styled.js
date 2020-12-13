@@ -2,9 +2,9 @@ import styled from "styled-components"
 import media from "styled-media-query"
 
 export const SocialLinksWrapper = styled.nav`
-  margin: 2rem auto;
+  margin: 1.6rem auto 1rem;
+  padding: 0 1rem;
   width: 100%;
-
   ${media.lessThan("large")`
     display: none;
   `}
@@ -22,8 +22,7 @@ export const SocialLinksItem = styled.li``
 export const SocialLinksLink = styled.a`
   color: var(--texts);
   text-decoration: none;
-  transition: color 0.5s;
-
+  transition: color 0.2s;
   &:hover {
     color: var(--highlight);
   }

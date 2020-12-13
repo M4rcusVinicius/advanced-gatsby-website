@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "styled-components"
 
+
 const GlobalStyles = createGlobalStyle`
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
   /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -55,7 +58,7 @@ const GlobalStyles = createGlobalStyle`
     background: #16202c;
     line-height: 1;
     font-size: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: 'Inter', sans-serif;
   }
   img {
     display: block;
@@ -76,11 +79,14 @@ const GlobalStyles = createGlobalStyle`
 
   body.light {
     --borders: #dedede;
-    --postColor: #111;
+    --postColor: #2d3748;
     --texts: #555555;
+    --title: #2b3340;
+    --lightText: #718096;
     --highlight: #1fa1f2;
-    --mediumBackground: #f0f0f3;
+    --mediumBackground: #f8f8f8;
     --background: #fff;
+    --blueBackground: #dee8fc;
     --white: #fff;
     --black: #222;
   }

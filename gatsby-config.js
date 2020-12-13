@@ -4,11 +4,10 @@ const queries = require("./src/utils/algolia_queries")
 
 module.exports = {
   siteMetadata: {
-    title: `John Doe`,
-    position: `Backend Developer`,
-    description: `A blog about backend development and other cool stuff.`,
-    author: `@myblog`,
-    siteUrl: `https://advanced-gatsby-website.netlify.app`,
+    title: `Simplesmente Estudante`,
+    position: `por Maquina do Mundo`,
+    description: `Site de compartilhamento de informação referentes ao encino fundamental e encino medio, disponiblizando conteudo gratuito para estudar, incluindo para a redação, ENEM, redação ENEM, vestibulares, vestibular, faculdade e provas.`,
+    author: `@MarcusVinicius`,
   },
   plugins: [
     `gatsby-plugin-transition-link`,
@@ -74,19 +73,18 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `John Doe`,
-        short_name: `John Doe`,
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
         start_url: `/`,
-        background_color: `#16202c`,
-        theme_color: `#16202c`,
+        background_color: `#663399`,
+        theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-netlify-cms`
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-netlify-cms`,
+    // `gatsby-plugin-offline`,
   ],
 }
