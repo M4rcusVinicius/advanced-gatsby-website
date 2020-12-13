@@ -61,7 +61,7 @@ const MenuBar = () => {
           }}
           className={theme}
         >
-          <Home />
+            <Home />
         </S.MenuBarItem>
         <S.MenuBarItem
           title="Mudar visualização"

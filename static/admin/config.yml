@@ -2,15 +2,15 @@ backend:
   name: github
   repo: M4rcusVinicius/advanced-gatsby-website
   branch: master
-  site_domain: simplesmente-estudante.netlify.app
+  site_domain: advanced-gatsby-website.netlify.app
 
 publish_mode: editorial_workflow
 media_folder: "static/assets/img"
 public_folder: "assets/img"
 
 collections:
-  - name: "posts" # Used in routes, e.g., /admin/collections/blog
-    label: "Posts" # Used in the UI
+  - name: "posts"
+    label: "Posts"
     folder: "posts" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
